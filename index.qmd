@@ -1,11 +1,18 @@
 ---
-title: "laurafurtadofer.github.io"
+title: "Laura Furtado Fernandes"
+image: media/headshot.jpg
+toc: false
+about: 
+  template: jolla
+  image-shape: round
+  image-width: 17em
+  links:
+    - text: LinkedIn
+      href: www.linkedin.com/in/laura-furtado-fernandes
+    - text: GitHub
+      href: https://github.com/laurafurtadofer
+    - text: Email
+      href: mailto:lffa2021@mymail.pomona.edu
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 1
-```
+Hi there! My name is Laura. I'm currently a Senior at Pomona College taking a class to learn data science skills (Foundations of Data Science in R)!
