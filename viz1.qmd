@@ -1,0 +1,36 @@
+---
+title: "Viz 1"
+description: |
+  Analysis of Hollywood Age Gaps
+author: Laura Furtado Fernandes
+date: February 16, 2025
+format: html
+---
+
+Statement on Data:
+
+```{r, include=FALSE}
+library(readr)
+library(tidyr)
+library(ggplot2)
+library(RColorBrewer)
+age_gaps <- read_csv("tidytuesday/age_gaps.csv")
+
+age_gaps$same_sex <- ifelse(age_gaps$character_1_gender == age_gaps$character_2_gender, "yes", "no")
+
+
+```
+
+```{r, echo = FALSE}
+library(RColorBrewer)
+
+ggplot(age_gaps, aes(x = release_year, y = age_difference)) + 
+  geom_point(aes(colour = same_sex), alpha = 0.7) + 
+  scale_colour_brewer(palette="Dark2") + 
+  labs(title = "Age Differences in Hollywood Movie Couples Over the Years", 
+       subtitle = "From 1931 to 2025", 
+       colour = "Is it a same \ngender couple?", 
+       x = "", 
+       y = "") + 
+  theme_minimal()
+```

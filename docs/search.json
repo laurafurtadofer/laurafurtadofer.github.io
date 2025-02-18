@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "viz1.html",
+    "href": "viz1.html",
+    "title": "Viz 1",
+    "section": "",
+    "text": "Statement on Data:"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Laura Furtado Fernandes",
@@ -11,6 +18,6 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "This site is part of my Foundations of Data Science in R course at Pomona College. The analyses posted here are part of course projects!"
   }
 ]

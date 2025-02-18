@@ -7,13 +7,20 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - about.qmd
-      - dataviz.qmd
-
+        text: "Home"
+      - href: about.qmd
+        text: "About"
+      - text: "Data Viz"
+        menu: 
+          - text: "Viz 1"
+            href: viz1.html 
+            
+     
 format:
   html:
-    theme: quartz
+    theme: 
+      light: quartz
+      dark: vapor
     css: styles.css
     toc: true
     page-layout: full

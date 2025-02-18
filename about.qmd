@@ -2,4 +2,4 @@
 title: "About"
 ---
 
-About this site
+This site is part of my Foundations of Data Science in R course at Pomona College. The analyses posted here are part of course projects!
