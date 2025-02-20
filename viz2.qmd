@@ -1,0 +1,56 @@
+---
+title: "Valentines Gift Habits"
+description: |
+  Analysis of Valentines Day Gift Giving
+author: Laura Furtado Fernandes
+date: February 16, 2025
+format: html
+---
+
+```{r, include = FALSE}
+library(tidyr)
+library(readr)
+library(ggplot2)
+gifts_age <- read_csv("tidytuesday/gifts_age.csv")
+gifts_gender <- read_csv("tidytuesday/gifts_gender.csv")
+spending <- read_csv("tidytuesday/historical_spending.csv")
+
+
+long_age <- gifts_age %>% dplyr::select(-SpendingCelebrating) %>% 
+  pivot_longer(!Age, names_to = "TypeOfGift", values_to = "Count") %>%
+  dplyr::mutate(Count = as.numeric(Count)) %>% 
+  dplyr::group_by(Age) %>% 
+  dplyr::mutate(total_age = sum(Count)) %>% 
+ dplyr::mutate(prop = Count/total_age) 
+
+
+
+
+
+
+```
+
+```{r, echo = FALSE}
+
+ggplot(long_age, 
+       aes(x = Age, y = prop, fill = TypeOfGift)) + 
+ geom_col() + 
+  labs(title = "Differences in Valentines Gift Giving Habits by Age Group", 
+       subtitle = "Proportion of gifts from each category", 
+       fill = "Gift Category", 
+       x = "", 
+       y = "Proportion") + 
+  theme_minimal()
+```
+
+*Alt Text: Bar plot showing the percentage of gifts from different categories (candy, clothing, evening out, gift cards, greeting cards, jewelry) that each age group (18-65+) purchases, where percentage of greeting card purchases goes up with age while jewelry goes down while the other categories remain pretty stable.*
+
+**This plot shows that people's shopping habits on valentines day stay pretty stable with age. The few differences are in the purchase of jewelry and greeting cards. The proportion of jewelry purchased compared to other items declines after people turn 44 and the proportion of greeting cards purchased picks up at age 35+.**
+
+Citations:
+
+This data comes from The National Retail Federation in the United States' [Valentine's Day Data Center](https://nrf.com/research-insights/holiday-data-and-trends/valentines-day/valentines-day-data-center), specifically the [Valentine's Day survey data](https://www.kaggle.com/datasets/infinator/happy-valentines-day-2022).
+
+Data Science Learning Community (2024). Tidy Tuesday: A weekly social data project. [https://tidytues.day](https://tidytues.day/)
+
+<https://github.com/rfordatascience/tidytuesday/tree/main/data/2024/2024-02-13>

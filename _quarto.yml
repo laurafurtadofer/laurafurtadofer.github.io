@@ -12,8 +12,10 @@ website:
         text: "About"
       - text: "Data Viz"
         menu: 
-          - text: "Viz 1"
-            href: viz1.html 
+          - text: "Hollywood Age Gaps"
+            href: viz1.html  
+          - text: "Valentines Gift Habits"
+            href: viz2.html 
             
      
 format:

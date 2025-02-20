@@ -10,7 +10,7 @@ about:
     - text: LinkedIn
       href: www.linkedin.com/in/laura-furtado-fernandes
     - text: GitHub
-      href: https://github.com/laurafurtadofer
+      href: https://github.com/laurafurtadofer/laurafurtadofer.github.io
     - text: Email
       href: mailto:lffa2021@mymail.pomona.edu
 ---
