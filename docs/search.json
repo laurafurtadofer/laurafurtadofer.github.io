@@ -11,7 +11,7 @@
     "href": "viz2.html",
     "title": "Valentines Gift Habits",
     "section": "",
-    "text": "This plot shows that people’s shopping habits on valentines day stay pretty stable with age. The few differences are in the purchase of jewelry and greeting cards. The proportion of jewelry purchased compared to other items declines after people turn 44 and the proportion of greeting cards purchased picks up at age 35+.\nCitations:\nThis data comes from The National Retail Federation in the United States’ Valentine’s Day Data Center, specifically the Valentine’s Day survey data.\nData Science Learning Community (2024). Tidy Tuesday: A weekly social data project. https://tidytues.day\nhttps://github.com/rfordatascience/tidytuesday/tree/main/data/2024/2024-02-13"
+    "text": "Valentines Gifts by Age Group\n\n\n\n\nThis plot shows that people’s shopping habits on valentines day stay pretty stable with age. The few differences are in the purchase of jewelry and greeting cards. The proportion of jewelry purchased compared to other items declines after people turn 44 and the proportion of greeting cards purchased picks up at age 35+.\nCitations:\nThis data comes from The National Retail Federation in the United States’ Valentine’s Day Data Center, specifically the Valentine’s Day survey data.\nData Science Learning Community (2024). Tidy Tuesday: A weekly social data project. https://tidytues.day\nhttps://github.com/rfordatascience/tidytuesday/tree/main/data/2024/2024-02-13"
   },
   {
     "objectID": "index.html",

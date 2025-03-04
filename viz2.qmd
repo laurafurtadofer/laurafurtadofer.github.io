@@ -31,10 +31,9 @@ long_age <- gifts_age %>% dplyr::select(-SpendingCelebrating) %>%
 ```
 
 ```{r, echo = FALSE}
-
+#| fig-cap: "Valentines Gifts by Age Group"
 #| fig-alt: "Bar plot showing the percentage of gifts from different categories (candy, clothing, evening out, gift cards, greeting cards, jewelry) that each age group (18-65+) purchases, where percentage of greeting card purchases goes up with age while jewelry goes down while the other categories remain pretty stable."
 #| label: valentines-by-age-plot
-#| fig-cap: "Valentines Gifts by Age Group"
 
 ggplot(long_age, 
        aes(x = Age, y = prop, fill = TypeOfGift)) + 
