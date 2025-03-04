@@ -41,9 +41,11 @@ ggplot(long_age,
        x = "", 
        y = "Proportion") + 
   theme_minimal()
-```
 
-*Alt Text: Bar plot showing the percentage of gifts from different categories (candy, clothing, evening out, gift cards, greeting cards, jewelry) that each age group (18-65+) purchases, where percentage of greeting card purchases goes up with age while jewelry goes down while the other categories remain pretty stable.*
+#| fig-alt: "Bar plot showing the percentage of gifts from different categories (candy, clothing, evening out, gift cards, greeting cards, jewelry) that each age group (18-65+) purchases, where percentage of greeting card purchases goes up with age while jewelry goes down while the other categories remain pretty stable."
+#| label: valentines-by-age-plot
+#| fig-cap: "Valentines Gifts by Age Group"
+```
 
 **This plot shows that people's shopping habits on valentines day stay pretty stable with age. The few differences are in the purchase of jewelry and greeting cards. The proportion of jewelry purchased compared to other items declines after people turn 44 and the proportion of greeting cards purchased picks up at age 35+.**
 
