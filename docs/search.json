@@ -4,7 +4,7 @@
     "href": "viz1.html",
     "title": "Hollywood Age Gaps",
     "section": "",
-    "text": "This plot shows that couple age gaps have remained pretty consistent over time and that the data was skewed towards more recent movies. It also shows that there are many more non-same gender couples than same gender couples in Hollywood movies but that the same gender couples are equally spread out along the age gap axis. Same gender couples only appeared in this Hollywood data set after the year 2000.\nCitations:\nThis data comes from Hollywood Age Gap via Data Is Plural.\nData Science Learning Community (2024). Tidy Tuesday: A weekly social data project. https://tidytues.day\nhttps://github.com/rfordatascience/tidytuesday/tree/main/data/2023/2023-02-14"
+    "text": "Hollywood Age Gaps Over Time\n\n\n\n\nThis plot shows that couple age gaps have remained pretty consistent over time and that the data was skewed towards more recent movies. It also shows that there are many more non-same gender couples than same gender couples in Hollywood movies but that the same gender couples are equally spread out along the age gap axis. Same gender couples only appeared in this Hollywood data set after the year 2000.\nCitations:\nThis data comes from Hollywood Age Gap via Data Is Plural.\nData Science Learning Community (2024). Tidy Tuesday: A weekly social data project. https://tidytues.day\nhttps://github.com/rfordatascience/tidytuesday/tree/main/data/2023/2023-02-14"
   },
   {
     "objectID": "viz2.html",

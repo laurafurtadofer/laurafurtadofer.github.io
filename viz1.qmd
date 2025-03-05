@@ -13,6 +13,7 @@ library(tidyr)
 library(ggplot2)
 library(RColorBrewer)
 age_gaps <- read_csv("tidytuesday/age_gaps.csv")
+library(RColorBrewer)
 
 age_gaps$same_sex <- ifelse(age_gaps$character_1_gender == age_gaps$character_2_gender, "yes", "no")
 
@@ -20,8 +21,6 @@ age_gaps$same_sex <- ifelse(age_gaps$character_1_gender == age_gaps$character_2_
 ```
 
 ```{r, echo = FALSE}
-library(RColorBrewer)
-
 #| label: age-gap-plot
 #| fig-cap: "Hollywood Age Gaps Over Time"
 #| fig-alt: "Scatter plot of age gaps between Hollywood couples over time coloured by whether the couple was of the same gender or not, where there are many more non-same gender couples than same gender couples."
