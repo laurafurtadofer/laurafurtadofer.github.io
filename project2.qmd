@@ -1,0 +1,193 @@
+---
+title: "Project 2"
+description: |
+  Text Analysis of Friends Episodes
+author: Laura Furtado Fernandes
+date: March 3, 2025
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+execute:
+  error: false  
+  warning: false
+---
+
+```{r, include = FALSE, attr.message= FALSE, attr.warning= FALSE}
+library(friends) 
+library(tidyverse)
+library(RColorBrewer)
+data(friends)
+as_tibble(friends)
+```
+
+```{r, how many times does joey say How you doin per season}
+
+howyoudoin <- friends %>% 
+  filter(speaker == "Joey Tribbiani") %>% 
+  filter(str_detect(text, "(?i)How you doin'\\?")) %>% 
+  group_by(season) %>% 
+  summarise(howyoudoin_count = n()) %>% 
+  mutate(season = as.character(season)) 
+
+howyoudoinmerge <- data.frame(
+  season = c("1", "2", "3", "10"), 
+  howyoudoin_count = c(0, 0, 0, 0)
+)
+
+howyoudoin <- bind_rows(howyoudoin, howyoudoinmerge) %>% 
+  mutate(season = factor(season, levels = sort(unique(as.numeric(season)))))
+
+
+ggplot(howyoudoin, 
+       aes(x = season, y = howyoudoin_count)) + 
+  geom_col(aes(fill = season, colour = season)) + 
+  labs(x = "Season", 
+       y = "Number of times Joey says 'how you doin'", 
+       title = "How each season of Friends is doin'") + 
+  theme_minimal() + 
+  theme(legend.position="none")
+
+
+```
+
+**This is a bar plot displaying how often Joey says "How you doin'?" per season of Friends. Joey first says his iconic catchphrase in season 4! It peaks during season 6 and by season 9 Joey barely says it anymore. This could reflect Joey's character development as less of a ladies man or, that the writers grew tired of this joke.**
+
+```{r, how many times do they say smelly cat in the show vs number of phoebe lines, attr.message= FALSE, attr.warning= FALSE}
+
+smelly_cat <- friends %>% 
+  mutate(smelly_cats = str_count(text, "(?i)\\bsmelly cat\\b")) %>% 
+  group_by(episode, season) %>%
+  summarise(total_smelly_cats = sum(smelly_cats)) %>% 
+  ungroup()
+
+utterances_by_char <- friends %>% 
+  group_by(season, episode, speaker) %>%
+  summarise(total_utterances = n()) %>% 
+  ungroup() %>% 
+  filter(speaker == "Chandler Bing" | speaker == "Monica Geller" | speaker == "Joey Tribbiani" | speaker == "Phoebe Buffay" | speaker == "Ross Geller"| speaker == "Rachel Green")
+  
+smelly_cats_char <- left_join(utterances_by_char, smelly_cat)
+  
+ggplot(smelly_cats_char, aes(x = total_utterances, y = total_smelly_cats)) + 
+  geom_jitter(aes(colour = speaker, alpha = ifelse(total_smelly_cats == 0, 0.25, 1))) + 
+  scale_alpha_identity() +  
+  labs(
+    title = "Character Utterances vs. 'Smelly Cat' Mentions",
+    x = "Total Utterances",
+    y = "Total 'Smelly Cat' Mentions",
+    colour = "Speaker"
+  ) +
+  theme_minimal()
+
+
+```
+
+**This is a scatter plot displaying the total number of utterances per character (main 5 friends) in every episode of friends vs the total mentions of 'Smelly Cat'. Surprisingly, on episodes with more 'Smelly Cat' mentions, Phoebe does not speak more often than the other friends.**
+
+```{r, utterance lengths}
+
+speaking_len <- friends %>% 
+  mutate(utterance_length = str_length(text)) %>% 
+  mutate(season = as.character(season)) %>%
+  mutate(speaker = ifelse(speaker == "Chandler Bing" | speaker == "Monica Geller" | speaker == "Joey Tribbiani" | speaker == "Phoebe Buffay" | speaker == "Ross Geller"| speaker == "Rachel Green", speaker, "Other")) %>%
+  group_by(episode, speaker) %>% 
+  summarise(avg_utt_length = mean(utterance_length, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  filter(!is.na(speaker), speaker != "Other")
+  
+
+ggplot(speaking_len, aes(x = episode, y = avg_utt_length)) + 
+  scale_colour_brewer(palette="Set1") + 
+  geom_point(aes(colour = speaker)) +  
+  geom_smooth(aes(colour = speaker), se = FALSE) +
+  labs(
+    x = "Episodes", 
+    y = "Average Utterance Length", 
+    title = "Change in Friends Character Utterance Length Over an Average Season"
+  ) +
+  theme_minimal() + 
+  facet_wrap(~speaker)
+
+speaking_len <- friends %>% 
+  mutate(utterance_length = str_length(text)) %>% 
+  mutate(speaker = ifelse(speaker == "Chandler Bing" | speaker == "Monica Geller" | speaker == "Joey Tribbiani" | speaker == "Phoebe Buffay" | speaker == "Ross Geller"| speaker == "Rachel Green", speaker, "Other")) %>%
+  group_by(season, speaker) %>% 
+  summarise(avg_utt_length = mean(utterance_length, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  filter(!is.na(speaker), speaker != "Other")
+
+ggplot(speaking_len, aes(x = season, y = avg_utt_length)) + 
+  scale_colour_brewer(palette="Set1") + 
+  geom_point(aes(colour = speaker)) + 
+  geom_smooth(aes(colour = speaker), se = FALSE) + 
+  scale_x_continuous(limits = c(1, 10), breaks = seq(1, 10, by = 1)) +
+  labs(x = "Season", 
+       y = "Average Utterance Length", 
+       title = "Change in Friends Character Utterance Length Over the Series") +
+  theme_minimal() + 
+  facet_wrap(~speaker)
+
+
+
+```
+
+**These are scatter plots with trend-lines displaying how average utterance length changes over time for each speaker, in both the span of the average season (per episode) and over the series (per season). Over the course of an average season of Friends, the characters utterances seem to get shorter (except for Chandler and Phoebe). Most characters utterance lengths fluctuated throughout the seasons. Notably, in season 1, Monica starts out with the shortest utterences and she slowly starts speaking longer utterances from season five onwards.**
+
+```{r, who talks to and about Janice the most}
+
+janice <- friends %>%
+  mutate(Janices = str_count(text, "(?<=Janice)\\b")) %>%
+  filter(speaker == "Chandler Bing" | speaker == "Monica Geller" | speaker == "Joey Tribbiani" | speaker == "Phoebe Buffay" | speaker == "Ross Geller"| speaker == "Rachel Green" | speaker == "Janice Litman Goralnik" ) %>% 
+  group_by(speaker) %>% 
+  summarise(total_janices = sum(Janices))
+
+
+ggplot(janice, 
+       aes(x = speaker, y = total_janices)) + 
+  geom_col(aes(fill = speaker)) + 
+  scale_fill_brewer(palette="GnBu") + 
+  labs(x = "Speaker", 
+       y = "Times Referenced Janice", 
+       title = "Who is most burdened by Janice?") + 
+  theme_minimal() + 
+  theme(legend.position="none") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+**This is a bar plot reflecting how often the characters in Friends refer to Janice. Chandler refers to Janice the most out of all his friends, this makes sense since he dates her throughout the series. Rachel is the character least burdened by Janice which must surely result in mental or ear health benefits.**
+
+```{r, first speaker per episode}
+
+
+
+first <- friends %>% 
+  filter(speaker != "Scene Directions") %>% 
+  group_by(season, episode) %>% 
+  slice_min(order_by = utterance, n = 1) %>% 
+  ungroup() %>%
+  filter(scene == 1) %>%
+  mutate(speaker = ifelse(speaker == "Chandler Bing" | speaker == "Monica Geller" | speaker == "Joey Tribbiani" | speaker == "Phoebe Buffay" | speaker == "Ross Geller"| speaker == "Rachel Green", speaker, "Other")) %>%
+  group_by(speaker) %>% 
+  summarise(firstspeaker_count = n())
+
+ggplot(first, 
+       aes(x = speaker, y = firstspeaker_count)) + 
+  geom_col(aes(fill = speaker)) + 
+  scale_fill_brewer(palette="RdPu") + 
+  labs(x = "Speaker", 
+       y = "Times first to speak in an episode", 
+       title = "Whose voice do you hear first in a Friends episode?") + 
+  theme_minimal() + 
+  theme(legend.position="none") 
+
+  
+```
+
+**This is a bar plot showing how often the first line in an episode is spoken by each friend or generic other character. Joey is most often the first to speak, followed by Chandler. This probably reflects the writers desire to start on a comic relief moment and Joey is the silliest character.**
+
+Citations:
+
+This data comes from [emilhvitfeldt.github.io/friends/](https://emilhvitfeldt.github.io/friends/ "https://emilhvitfeldt.github.io/friends/") + Friends \[TV series\]. National Broadcasting Company.
