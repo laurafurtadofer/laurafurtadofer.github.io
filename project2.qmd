@@ -21,7 +21,7 @@ data(friends)
 as_tibble(friends)
 ```
 
-```{r, how many times does joey say How you doin per season}
+```{r, How you doin}
 
 howyoudoin <- friends %>% 
   filter(speaker == "Joey Tribbiani") %>% 
@@ -53,7 +53,7 @@ ggplot(howyoudoin,
 
 **This is a bar plot displaying how often Joey says "How you doin'?" per season of Friends. Joey first says his iconic catchphrase in season 4! It peaks during season 6 and by season 9 Joey barely says it anymore. This could reflect Joey's character development as less of a ladies man or, that the writers grew tired of this joke.**
 
-```{r, how many times do they say smelly cat in the show vs number of phoebe lines, attr.message= FALSE, attr.warning= FALSE}
+```{r, Smelly Cat}
 
 smelly_cat <- friends %>% 
   mutate(smelly_cats = str_count(text, "(?i)\\bsmelly cat\\b")) %>% 
@@ -73,9 +73,9 @@ ggplot(smelly_cats_char, aes(x = total_utterances, y = total_smelly_cats)) +
   geom_jitter(aes(colour = speaker, alpha = ifelse(total_smelly_cats == 0, 0.25, 1))) + 
   scale_alpha_identity() +  
   labs(
-    title = "Character Utterances vs. 'Smelly Cat' Mentions",
-    x = "Total Utterances",
-    y = "Total 'Smelly Cat' Mentions",
+    title = "Smelly Cat's Relationship to Character Dialogue",
+    x = "Total Utterances per Episode",
+    y = "Total 'Smelly Cat' Mentions per Episode",
     colour = "Speaker"
   ) +
   theme_minimal()
@@ -134,7 +134,7 @@ ggplot(speaking_len, aes(x = season, y = avg_utt_length)) +
 
 **These are scatter plots with trend-lines displaying how average utterance length changes over time for each speaker, in both the span of the average season (per episode) and over the series (per season). Over the course of an average season of Friends, the characters utterances seem to get shorter (except for Chandler and Phoebe). Most characters utterance lengths fluctuated throughout the seasons. Notably, in season 1, Monica starts out with the shortest utterences and she slowly starts speaking longer utterances from season five onwards.**
 
-```{r, who talks to and about Janice the most}
+```{r, Burdened by Janice}
 
 janice <- friends %>%
   mutate(Janices = str_count(text, "(?<=Janice)\\b")) %>%
