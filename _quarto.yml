@@ -14,8 +14,13 @@ website:
             href: viz1.html  
           - text: "Valentines Gift Habits"
             href: viz2.html 
+      - text: "Mini Projects"
+        menu:     
           - text: "Project 2"
-            href: project2.html 
+            href: project2.html
+          - text: "Project 3"
+
+            
           
 format:
   html:
