@@ -1,0 +1,106 @@
+---
+title: "Project 3"
+description: |
+  Investigation of Home Field Advantage in Flamengo
+author: Laura Furtado Fernandes
+date: April 2, 2025
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+execute:
+  error: false  
+  warning: false
+---
+
+Athletes tend to perform better at home, and this well-known phenomenon is called "home advantage". It happens due to a combination of fan support, familiarity with the venue, no travel stress, etc. **Clube de Regatas do Flamengo** (better known as Flamengo) is a fascinating case study in this context. With an estimated 40 to 50 million supporters spread across the country, Flamengo often draws large crowds regardless of location — even in away matches. In this project, I aim to investigate whether the traditional "home advantage" also applies to Flamengo or if their massive nationwide fanbase neutralizes the traditional home-field advantage. In other words: *Does Flamengo play "at home" wherever they go?* Or does playing in the iconic Maracanã — the most famous stadium in the world — still provide a meaningful edge? I will be measuring performance by comparing the number of goals scored by Flamengo at home vs. away.
+
+```{r, include = FALSE, attr.message= FALSE, attr.warning= FALSE}
+library(tidyverse)
+library(RColorBrewer)
+library(readr)
+
+br_soccer <- read_csv("data/BR-Football-Dataset.csv")
+flamengo_games <- br_soccer %>% 
+  filter(home == "Flamengo" | away == "Flamengo")
+
+```
+
+```{r}
+
+flamengo_games %>%
+   mutate(
+      is_home = ifelse(home == "Flamengo", TRUE, FALSE),
+      goals_for = ifelse(is_home, home_goal, away_goal)
+    )  %>%
+  group_by(is_home) %>% 
+  summarize(mean_goals = mean(goals_for)) %>% 
+  ggplot(aes(x = is_home, y = mean_goals, fill = is_home)) +
+  geom_col(width = 0.6) +
+  scale_fill_brewer(palette = "PuRd") + 
+  scale_x_discrete(labels = c("Away", "Home")) +
+  labs(
+    title = "Flamengo's Average Goals Scored: Home vs. Away",
+    x = "Game Location",
+    y = "Average Goals Scored", 
+    fill = "Playing at Home?"
+  ) +
+  theme_minimal()
+
+```
+
+This plot highlights the difference between Flamengo's average goals scored at home vs away, Flamengo scores on average 1.75 goals in home matches, while scoring around 1.34 goals in away games. It is a difference of less than one goal.
+
+```{r, Flamengo permutation test}
+
+perm_data <- function(rep, team){
+  games <- br_soccer %>%
+    filter(home == team | away == team) %>%
+    mutate(
+      is_home = ifelse(home == team, TRUE, FALSE),
+      goals_for = ifelse(is_home, home_goal, away_goal)
+    ) %>%
+    select(is_home, goals_for)
+
+  obs_diff <- games %>%
+    group_by(is_home) %>%
+    summarize(mean_goals = mean(goals_for)) %>%
+    summarize(diff = mean_goals[is_home == TRUE] - mean_goals[is_home == FALSE]) %>%
+    pull(diff)
+
+  permuted <- games %>%
+    mutate(is_home_perm = sample(is_home))
+
+  perm_diff <- permuted %>%
+    group_by(is_home_perm) %>%
+    summarize(mean_goals = mean(goals_for)) %>%
+    summarize(diff = mean_goals[is_home_perm == TRUE] - mean_goals[is_home_perm == FALSE]) %>%
+    pull(diff)
+
+  tibble(rep = rep, obs_diff = obs_diff, perm_diff = perm_diff)
+}
+
+perm_results <- map(1:1000, perm_data, team = "Flamengo") |> 
+  list_rbind()
+
+```
+
+```{r, Flamengo permutation plot}
+ggplot(perm_results, aes(x = perm_diff)) +
+  geom_histogram(bins = 30, fill = "black", color = "red") +
+  geom_vline(aes(xintercept = obs_diff), color = "blue", linetype = "dashed", linewidth = 1) +
+  labs(
+    title = "Permutation Test: Flamengo's Home vs. Away Goal Average",
+    x = "Permuted Mean Difference (Home - Away)",
+    y = "Count"
+  ) + 
+  theme_minimal()
+  
+
+```
+
+The permutation test revealed that **Flamengo does, in fact, experience a home-field advantage**. As shown in the plot above, the difference in average goals scored between home and away matches (represented by the blue dashed line) is much greater than what would be expected by random chance. This provides strong evidence that Flamengo scores more goals at home than away, suggesting that playing in Maracanã may offer a meaningful boost.
+
+Citation:
+
+This data was obtained from the Kaggle Brazilian Football Matches dataset: https://www.kaggle.com/datasets/cuecacuela/brazilian-football-matches
