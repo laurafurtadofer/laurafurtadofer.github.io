@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Laura Furtado Fernandes">
+<meta name="dcterms.date" content="2025-04-16">
+<meta name="description" content="Data Science Ethics">
 
-<title>About – Laura Furtado Fernandes</title>
+<title>Project 4 – Laura Furtado Fernandes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,14 +151,31 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Project 4</h1>
 </div>
 
+<div>
+  <div class="description">
+    <p>Data Science Ethics</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta column-page">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Laura Furtado Fernandes </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 16, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -165,7 +185,24 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This site is part of my Foundations of Data Science in R course at Pomona College. The analyses posted here are part of course projects!</p>
+<p><strong>Facebook Ethical Dilemma</strong></p>
+<pre><code>In 2014, a paper titled '[Experimental Evidence of Massive-Scale Emotional Contagion through Social Networks](https://www.pnas.org/doi/10.1073/pnas.1320040111)' was published in *Proceedings of the National Academy of Sciences of the United States of America* (Kramer et al., 2014). This paper details the results from a large-scale experiment conducted on 689,003 English-speaking Facebook users to examine how the valence (positive or negative) of their News Feed content influenced their behavior on Facebook over a period of 1 week. Specifically, they measured whether people who saw differently valenced News Feeds used different percentages of positive vs negative words in their posts. This research, however, became highly controversial because it seemingly ignored pillars of academic investigation and data science, like informed consent, ethical data collection, improving lives, data transparency and availability, and generalizability.</code></pre>
+<p><strong>Informed Consent Violations</strong></p>
+<p>Firstly, in order to do this research and observe emotion contagion, the researchers manipulated users’ news feeds and, in essence, experimented on them without their informed consent. Participants were recruited and randomly assigned to conditions without being informed of participation in the study (Kramer et al.&nbsp;2014). There are obvious ethical issues with this, as manipulating participants without their consent goes against the Belmont Report’s guidelines for research on human participants (Protections, 2010). Some argued that this sort of research is commonplace in industry (Park, 2014; Boesel, 2014) and that it only became unethical when it was published and fell short of the moral standards expected of academics (Park, 2014). Especially since it was done in collaboration with Cornell University: the Facebook researcher, Adam Kramer, partnered with two Cornell University investigators, Jamie Guillory and Jeffrey Hancock, in this project. The Cornell Institutional Review Board deemed the study exempt from their oversight because the data was being collected by Facebook, and some argue that it was a mistake (Boesel, 2014). This study violated the informed consent and ethical data collection principles of data science research.</p>
+<p><strong>Failure to Improve Lives</strong></p>
+<p>The Facebook emotional contagion study also violated the data science principle that data should be used to improve the lives of individuals and communities. One could argue that this research is valuable and that the findings are beneficial to humanity because understanding emotional contagion is important and that this was the only way to study emotional contagion. However, that is not entirely true. Emotion contagion had been studied in more naturalistic ways years before Kramer et al.&nbsp;(2014) did it. Fowler &amp; Christakis (2008) studied emotion contagion in social networks over a period of 20 years, 4739 participants consented to participate in a study; they found that there are clusters of happy and unhappy people in social networks and that happiness spread through the network, if a friend who lives within a mile becomes happy, it increases the probability that a person is happy by 25%. You could then argue that this effect is understudied in social media and that this was the only way to accurately do that, and that would also not be entirely true. One year after Kramer et al.&nbsp;(2014) published their study, and in response to the controversy, Ferrara and Yang (2015) investigated emotional contagion in social media by observing people on Twitter and measuring the valence of the content they had been exposed to without manipulating it. Therefore, the Facebook study not only introduced ethical harm (via emotional manipulation without consent) but also failed to generate new insights that justified those harms.</p>
+<p><strong>Lack of Transparency</strong></p>
+<p>Additionally, if this research had truly been revolutionary and overwhelmingly beneficial to others, then it stands to reason that the data collected in this study should be made publicly available and transparent which was not the case (Kramer et al., 2014). Instead, interested parties could reach out to Kramer et al.&nbsp;to request access to the data. This limits the work’s reproducibility and extension of the findings, violating data science principles.</p>
+<p><strong>Generalizability and Bias</strong></p>
+<p>Furthermore, this research was conducted solely with English-speaking individuals who use Facebook, which raises concerns about cross-culture generalizability (Kramer et al., 2014). Then, can we claim that the findings are generalized to all of humanity? Or just to English-speaking, rich, industrialized populations? In this case, this research and findings are also perpetuating issues in the field of behavioral science, like the over-representation of WEIRD populations (Apa.Org, 2025). Given the access that Facebook had, they should and could have made this research more inclusive.</p>
+<p><strong>References:</strong></p>
+<p><em>Are your findings “WEIRD”?</em> (n.d.). Https://Www.Apa.Org. Retrieved April 16, 2025, from <a href="https://www.apa.org/monitor/2010/05/weird" class="uri">https://www.apa.org/monitor/2010/05/weird</a></p>
+<p>Boesel, W. E. (2014, July 3). <em>Facebook’s Controversial Experiment: Big Tech Is the New Big Pharma</em>. TIME. <a href="https://time.com/2951726/facebook-emotion-contagion-experiment/" class="uri">https://time.com/2951726/facebook-emotion-contagion-experiment/</a></p>
+<p>Fowler, J. H., &amp; Christakis, N. A. (2008). Dynamic spread of happiness in a large social network: Longitudinal analysis over 20 years in the Framingham Heart Study. <em>BMJ (Clinical Research Ed.)</em>, <em>337</em>, a2338. <a href="https://doi.org/10.1136/bmj.a2338" class="uri">https://doi.org/10.1136/bmj.a2338</a></p>
+<p>Ferrara, E., &amp; Yang, Z. (2015). Measuring Emotional Contagion in Social Media. <em>PLOS ONE</em>, <em>10</em>(11), e0142390. <a href="https://doi.org/10.1371/journal.pone.0142390" class="uri">https://doi.org/10.1371/journal.pone.0142390</a></p>
+<p>Kramer, A. D., Guillory, J. E., and Hancock, J. T. (2014), <a href="https://www.pnas.org/doi/10.1073/pnas.1320040111">Experimental Evidence of Massive-Scale Emotional Contagion through Social Networks</a>, Proceedings of the National Academy of Sciences of the United States of America, 111, 8788–8790</p>
+<p>Park, A. (2014, June 30). <em>Calm Down: Facebook Isn’t Really Manipulating Your Emotions</em>. TIME. <a href="https://time.com/2941513/calm-down-facebook-isnt-manipulating-your-emotions/" class="uri">https://time.com/2941513/calm-down-facebook-isnt-manipulating-your-emotions/</a></p>
+<p>Protections (OHRP), O. for H. R. (2010, January 28). <em>The Belmont Report</em> [Page]. <a href="https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html" class="uri">https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html</a></p>
 
 
 
