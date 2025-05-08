@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2025-04-02">
 <meta name="description" content="Investigation of Home Field Advantage in Flamengo">
 
-<title>Project 3 – Laura Furtado Fernandes</title>
+<title>Permutation Testing – Laura Furtado Fernandes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,17 +132,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-viz" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Data Viz</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Research</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-viz">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
         <li>
-    <a class="dropdown-item" href="./viz1.html">
- <span class="dropdown-text">Hollywood Age Gaps</span></a>
+    <a class="dropdown-item" href="./FurtadoFernandes_CV.pdf">
+ <span class="dropdown-text">CV</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./viz2.html">
- <span class="dropdown-text">Valentines Gift Habits</span></a>
+    <a class="dropdown-item" href="https://osf.io/profile/">
+ <span class="dropdown-text">OSF</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://scholar.google.com/citations?user=jfgtLh8AAAAJ">
+ <span class="dropdown-text">Google Scholar</span></a>
   </li>  
     </ul>
   </li>
@@ -153,19 +157,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-mini-projects">    
         <li>
     <a class="dropdown-item" href="./project2.html">
- <span class="dropdown-text">Project 2</span></a>
+ <span class="dropdown-text">Text Analyses + Regex</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./project3.html">
- <span class="dropdown-text">Project 3</span></a>
+ <span class="dropdown-text">Permutation Testing</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./project4.html">
- <span class="dropdown-text">Project 4</span></a>
+ <span class="dropdown-text">Data Science Ethics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./project5.html">
- <span class="dropdown-text">Project 5</span></a>
+ <span class="dropdown-text">SQL and large databases</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./viz1.html">
+ <span class="dropdown-text">Hollywood Age Gaps</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./viz2.html">
+ <span class="dropdown-text">Valentines Gift Habits</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./project6.html">
+ <span class="dropdown-text">Presentation</span></a>
   </li>  
     </ul>
   </li>
@@ -189,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project 3</h1>
+<h1 class="title">Permutation Testing</h1>
 </div>
 
 <div>
@@ -223,7 +239,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Athletes tend to perform better at home, and this well-known phenomenon is called “home advantage”. It happens due to a combination of fan support, familiarity with the venue, no travel stress, etc. <strong>Clube de Regatas do Flamengo</strong> (better known as Flamengo) is a fascinating case study in this context. With an estimated 40 to 50 million supporters spread across the country, Flamengo often draws large crowds regardless of location — even in away matches. In this project, I aim to investigate whether the traditional “home advantage” also applies to Flamengo or if their massive nationwide fanbase neutralizes the traditional home-field advantage. In other words: <em>Does Flamengo play “at home” wherever they go?</em> <em>Or does playing in the iconic Maracanã — the most famous stadium in the world — still provide a meaningful edge?</em> I will be measuring performance by comparing the number of goals scored by Flamengo at home vs.&nbsp;away.</p>
+<p>Athletes tend to perform better at home, and this well-known phenomenon is called “home advantage”. It happens due to a combination of fan support, familiarity with the venue, no travel stress, etc. <strong>Clube de Regatas do Flamengo</strong> (better known as Flamengo) is a soccer club in Rio de Janeiro, Brazil and a fascinating case study in this context. With an estimated 40 to 50 million supporters spread across the country, Flamengo often draws large crowds regardless of location — even in away matches. In this project, I aim to investigate whether the traditional “home advantage” also applies to Flamengo or if their massive nationwide fanbase neutralizes the traditional home-field advantage. In other words: <em>Does Flamengo play “at home” wherever they go?</em> <em>Or does playing in the iconic Maracanã — the most famous stadium in the world — still provide a meaningful edge?</em> I will be measuring performance by comparing the number of goals scored by Flamengo at home vs.&nbsp;away using a dataset of brazilian soccer matches from the main brazilian leagues.</p>
+<p>I hypothesize that the difference in goals between home and away games for Flamengo can be attributed to chance because of the large fanbase.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
@@ -310,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The permutation test revealed that <strong>Flamengo does, in fact, experience a home-field advantage</strong>. As shown in the plot above, the difference in average goals scored between home and away matches (represented by the blue dashed line) is much greater than what would be expected by random chance. This provides strong evidence that Flamengo scores more goals at home than away, suggesting that playing in Maracanã may offer a meaningful boost.</p>
+<p>The permutation test revealed that <strong>Flamengo does, in fact, experience a home-field advantage</strong>. This rejects my hypothesis. As shown in the plot above, the difference in average goals scored between home and away matches (represented by the blue dashed line) is much greater than what would be expected by random chance. This provides strong evidence that Flamengo scores more goals at home than away, suggesting that playing in Maracanã may offer a meaningful boost.</p>
 <p>Citation:</p>
 <p>This data was obtained from the Kaggle Brazilian Football Matches dataset: https://www.kaggle.com/datasets/cuecacuela/brazilian-football-matches</p>
 
