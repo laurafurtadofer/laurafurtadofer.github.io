@@ -1,5 +1,5 @@
 ---
-title: "Project 3"
+title: "Permutation Testing"
 description: |
   Investigation of Home Field Advantage in Flamengo
 author: Laura Furtado Fernandes
@@ -13,7 +13,9 @@ execute:
   warning: false
 ---
 
-Athletes tend to perform better at home, and this well-known phenomenon is called "home advantage". It happens due to a combination of fan support, familiarity with the venue, no travel stress, etc. **Clube de Regatas do Flamengo** (better known as Flamengo) is a fascinating case study in this context. With an estimated 40 to 50 million supporters spread across the country, Flamengo often draws large crowds regardless of location — even in away matches. In this project, I aim to investigate whether the traditional "home advantage" also applies to Flamengo or if their massive nationwide fanbase neutralizes the traditional home-field advantage. In other words: *Does Flamengo play "at home" wherever they go?* *Or does playing in the iconic Maracanã — the most famous stadium in the world — still provide a meaningful edge?* I will be measuring performance by comparing the number of goals scored by Flamengo at home vs. away.
+Athletes tend to perform better at home, and this well-known phenomenon is called "home advantage". It happens due to a combination of fan support, familiarity with the venue, no travel stress, etc. **Clube de Regatas do Flamengo** (better known as Flamengo) is a soccer club in Rio de Janeiro, Brazil and a fascinating case study in this context. With an estimated 40 to 50 million supporters spread across the country, Flamengo often draws large crowds regardless of location — even in away matches. In this project, I aim to investigate whether the traditional "home advantage" also applies to Flamengo or if their massive nationwide fanbase neutralizes the traditional home-field advantage. In other words: *Does Flamengo play "at home" wherever they go?* *Or does playing in the iconic Maracanã — the most famous stadium in the world — still provide a meaningful edge?* I will be measuring performance by comparing the number of goals scored by Flamengo at home vs. away using a dataset of brazilian soccer matches from the main brazilian leagues.
+
+I hypothesize that the difference in goals between home and away games for Flamengo can be attributed to chance because of the large fanbase.
 
 ```{r, include = FALSE, attr.message= FALSE, attr.warning= FALSE}
 library(tidyverse)
@@ -99,7 +101,7 @@ ggplot(perm_results, aes(x = perm_diff)) +
 
 ```
 
-The permutation test revealed that **Flamengo does, in fact, experience a home-field advantage**. As shown in the plot above, the difference in average goals scored between home and away matches (represented by the blue dashed line) is much greater than what would be expected by random chance. This provides strong evidence that Flamengo scores more goals at home than away, suggesting that playing in Maracanã may offer a meaningful boost.
+The permutation test revealed that **Flamengo does, in fact, experience a home-field advantage**. This rejects my hypothesis. As shown in the plot above, the difference in average goals scored between home and away matches (represented by the blue dashed line) is much greater than what would be expected by random chance. This provides strong evidence that Flamengo scores more goals at home than away, suggesting that playing in Maracanã may offer a meaningful boost.
 
 Citation:
 

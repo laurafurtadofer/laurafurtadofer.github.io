@@ -1,0 +1,277 @@
+---
+title: "End of Semester Presentation"
+author: "Laura Furtado Fernandes"
+subtitle: "8th May 2025"
+format:
+  revealjs:
+    scrollable: true
+    slide-number: true
+    show-slide-number: all
+    embed-resources: true
+    center-title-slide: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Friends
+
+Friends is a famous sitcom that aired on NBC between 1994 and 2004. It followed the lives of 6 friends living in Manhattan and become a global pop culture sensation! Friends ran for 10 years and its scripts hold so much character data which can be fun to analyse!
+
+<img src="https://static.wikia.nocookie.net/jeanclaudevandamme/images/e/e8/Friends_poster.jpg/revision/latest?cb=20230523133702" width="600px"/>
+
+## Project Set Up
+
+For this project I used the following packages to examine data from the dialogue in friends episodes.
+
+```{r, include = TRUE, attr.message= FALSE, attr.warning= FALSE}
+library(friends) 
+library(tidyverse)
+library(RColorBrewer)
+data(friends)
+as_tibble(friends)
+```
+
+## How you doin'? 
+
+One of the characters from Friends, Joey Tribbiani, is famous for his catch phrase *How you doin'*
+
+```{=html}
+<img src="https://assets.shortpedia.com/uploads/2021/04/12/1618230565.jpg" 
+       alt="Joey Tribbiani" 
+       width="60%" />
+```
+
+## How did I do it? 
+
+I wanted to examine how often Joey says his catchphrase and if that changes throughout the seasons. To do that, I used the following R code.
+
+```{r}
+
+howyoudoin <- friends %>% 
+  filter(speaker == "Joey Tribbiani") %>% 
+  filter(str_detect(text, "(?i)How you doin'\\?")) %>% 
+  group_by(season) %>% 
+  summarise(howyoudoin_count = n()) %>% 
+  mutate(season = as.character(season)) 
+
+howyoudoinmerge <- data.frame(
+  season = c("1", "2", "3", "10"), 
+  howyoudoin_count = c(0, 0, 0, 0)
+)
+
+howyoudoin <- bind_rows(howyoudoin, howyoudoinmerge) %>% 
+  mutate(season = factor(season, levels = sort(unique(as.numeric(season)))))
+```
+
+## How each season is doin?
+
+```{r}
+ggplot(howyoudoin, 
+       aes(x = season, y = howyoudoin_count)) + 
+  geom_col(aes(fill = season, colour = season)) + 
+  labs(x = "Season", 
+       y = "Number of times Joey says 'how you doin'", 
+       title = "How each season of Friends is doin'") + 
+  theme_minimal() + 
+  theme(legend.position="none")
+
+
+```
+
+## Smelly Friends... 
+
+Another recurring joke in the show is Phoebe's singing. She is a notoriously bad singer, with weird song subjects and lyrics on top of that. One of her most famous songs is "Smelly Cat".
+
+```{=html}
+<img src="https://static.wikia.nocookie.net/friends/images/c/c2/Smelly_Cat.jpg/revision/latest?cb=20170222183246" 
+       alt="Smelly Cat" 
+       width="60%" />
+```
+
+Phoebe is also one of the most overlooked characters in the show. I wanted to see if in episodes with more mentions of "Smelly Cat" Phoebe would also have more lines.
+
+## How did I do it? 
+
+I used the following code to count how many utterances per character (6 main friends) per episode and compared that to number of smelly cat mentions per episode.
+
+```{r}
+smelly_cat <- friends %>% 
+  mutate(smelly_cats = str_count(text, "(?i)\\bsmelly cat\\b")) %>% 
+  group_by(episode, season) %>%
+  summarise(total_smelly_cats = sum(smelly_cats)) %>% 
+  ungroup()
+
+utterances_by_char <- friends %>% 
+  group_by(season, episode, speaker) %>%
+  summarise(total_utterances = n()) %>% 
+  ungroup() %>% 
+  filter(speaker == "Chandler Bing" | speaker == "Monica Geller" | speaker == "Joey Tribbiani" | speaker == "Phoebe Buffay" | speaker == "Ross Geller"| speaker == "Rachel Green")
+  
+smelly_cats_char <- left_join(utterances_by_char, smelly_cat)
+  
+
+```
+
+## What I found: 
+
+```{r, echo = FALSE}
+ggplot(smelly_cats_char, aes(x = total_utterances, y = total_smelly_cats)) + 
+  geom_jitter(aes(colour = speaker, alpha = ifelse(total_smelly_cats == 0, 0.25, 1))) + 
+  scale_alpha_identity() +  
+  labs(
+    title = "Smelly Cat's Relationship to Character Dialogue",
+    x = "Total Utterances per Episode",
+    y = "Total 'Smelly Cat' Mentions per Episode",
+    colour = "Speaker"
+  ) +
+  theme_minimal()
+```
+
+## Speaking pattern changes over the avg season 
+
+Friends was on for so long, it is possible that there were fluctuations in how much characters spoke per season or even over the course of a season. I examined the average utterance length for each of the main 6 friends over the course of the average season and per season.
+
+```{r}
+
+speaking_len <- friends %>% 
+  mutate(utterance_length = str_length(text)) %>% 
+  mutate(season = as.character(season)) %>%
+  mutate(speaker = ifelse(speaker == "Chandler Bing" | speaker == "Monica Geller" | speaker == "Joey Tribbiani" | speaker == "Phoebe Buffay" | speaker == "Ross Geller"| speaker == "Rachel Green", speaker, "Other")) %>%
+  group_by(episode, speaker) %>% 
+  summarise(avg_utt_length = mean(utterance_length, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  filter(!is.na(speaker), speaker != "Other")
+  
+
+
+
+
+```
+
+## What I found: 
+
+```{r, echo = FALSE}
+ggplot(speaking_len, aes(x = episode, y = avg_utt_length)) + 
+  scale_colour_brewer(palette="Set1") + 
+  geom_point(aes(colour = speaker)) +  
+  geom_smooth(aes(colour = speaker), se = FALSE) +
+  labs(
+    x = "Episodes", 
+    y = "Average Utterance Length", 
+    title = "Change in Friends Character Utterance Length Over an Average Season"
+  ) +
+  theme_minimal() + 
+  facet_wrap(~speaker)
+
+```
+
+## Speaking pattern changes over the series
+
+```{r}
+speaking_len <- friends %>% 
+  mutate(utterance_length = str_length(text)) %>% 
+  mutate(speaker = ifelse(speaker == "Chandler Bing" | speaker == "Monica Geller" | speaker == "Joey Tribbiani" | speaker == "Phoebe Buffay" | speaker == "Ross Geller"| speaker == "Rachel Green", speaker, "Other")) %>%
+  group_by(season, speaker) %>% 
+  summarise(avg_utt_length = mean(utterance_length, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  filter(!is.na(speaker), speaker != "Other")
+
+
+```
+
+## What I found: 
+
+```{r, echo = FALSE}
+ggplot(speaking_len, aes(x = season, y = avg_utt_length)) + 
+  scale_colour_brewer(palette="Set1") + 
+  geom_point(aes(colour = speaker)) + 
+  geom_smooth(aes(colour = speaker), se = FALSE) + 
+  scale_x_continuous(limits = c(1, 10), breaks = seq(1, 10, by = 1)) +
+  labs(x = "Season", 
+       y = "Average Utterance Length", 
+       title = "Change in Friends Character Utterance Length Over the Series") +
+  theme_minimal() + 
+  facet_wrap(~speaker)
+```
+
+## Oh Janice... 
+
+While not one of the main friends, Janice is a memorable character. She is Chandler's ex girlfriend and is famous for her horrible sounding laugh.
+
+```{=html}
+<img src="https://hips.hearstapps.com/hmg-prod/images/janice-friends-maggie-wheeler-1569320000.jpg" 
+       alt="Janice" 
+       width="60%" />
+```
+
+I wanted to see who, among all the 6 friends was most often talking about Janice.
+
+```{r}
+janice <- friends %>%
+  mutate(Janices = str_count(text, "(?<=Janice)\\b")) %>%
+  filter(speaker == "Chandler Bing" | speaker == "Monica Geller" | speaker == "Joey Tribbiani" | speaker == "Phoebe Buffay" | speaker == "Ross Geller"| speaker == "Rachel Green" | speaker == "Janice Litman Goralnik" ) %>% 
+  group_by(speaker) %>% 
+  summarise(total_janices = sum(Janices))
+
+
+
+```
+
+## What I found: 
+
+```{r, echo = FALSE}
+ggplot(janice, 
+       aes(x = speaker, y = total_janices)) + 
+  geom_col(aes(fill = speaker)) + 
+  scale_fill_brewer(palette="GnBu") + 
+  labs(x = "Speaker", 
+       y = "Times Referenced Janice", 
+       title = "Who is most burdened by Janice?") + 
+  theme_minimal() + 
+  theme(legend.position="none") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+
+```
+
+## Whose voice is most welcoming? 
+
+Finally, I was curious to see who is most often the first friend to speak in an episode.
+
+```{r}
+
+first <- friends %>% 
+  filter(speaker != "Scene Directions") %>% 
+  group_by(season, episode) %>% 
+  slice_min(order_by = utterance, n = 1) %>% 
+  ungroup() %>%
+  filter(scene == 1) %>%
+  mutate(speaker = ifelse(speaker == "Chandler Bing" | speaker == "Monica Geller" | speaker == "Joey Tribbiani" | speaker == "Phoebe Buffay" | speaker == "Ross Geller"| speaker == "Rachel Green", speaker, "Other")) %>%
+  group_by(speaker) %>% 
+  summarise(firstspeaker_count = n())
+
+
+  
+```
+
+## What I found: 
+
+```{r, echo = FALSE}
+ggplot(first, 
+       aes(x = speaker, y = firstspeaker_count)) + 
+  geom_col(aes(fill = speaker)) + 
+  scale_fill_brewer(palette="RdPu") + 
+  labs(x = "Speaker", 
+       y = "Times first to speak in an episode", 
+       title = "Whose voice do you hear first in a Friends episode?") + 
+  theme_minimal() + 
+  theme(legend.position="none") 
+
+```
+
+## The Friends we made along the way... 
+
+I had a lot of fun with this project and liked learning how to use Regex!

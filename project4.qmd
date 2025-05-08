@@ -1,7 +1,7 @@
 ---
-title: "Project 4"
+title: "Data Science Ethics"
 description: |
- Data Science Ethics
+ The Facebook Problem
 author: Laura Furtado Fernandes
 date: April 16, 2025
 format:
@@ -19,7 +19,7 @@ In 2014, a paper titled '[Experimental Evidence of Massive-Scale Emotional Conta
 
 **Informed Consent Violations**
 
-Firstly, in order to do this research and observe emotion contagion, the researchers manipulated users' news feeds and, in essence, experimented on them without their informed consent. Participants were recruited and randomly assigned to conditions without being informed of participation in the study (Kramer et al. 2014). There are obvious ethical issues with this, as manipulating participants without their consent goes against the Belmont Report's guidelines for research on human participants (Protections, 2010). Some argued that this sort of research is commonplace in industry (Park, 2014; Boesel, 2014) and that it only became unethical when it was published and fell short of the moral standards expected of academics (Park, 2014). Especially since it was done in collaboration with Cornell University: the Facebook researcher, Adam Kramer, partnered with two Cornell University investigators, Jamie Guillory and Jeffrey Hancock, in this project. The Cornell Institutional Review Board deemed the study exempt from their oversight because the data was being collected by Facebook, and some argue that it was a mistake (Boesel, 2014). This study violated the informed consent and ethical data collection principles of data science research.
+Firstly, in order to do this research and observe emotion contagion, the researchers manipulated users' news feeds and, in essence, experimented on them without their informed consent. Participants were recruited and randomly assigned to conditions without being informed of participation in the study (Kramer et al. 2014). There are obvious ethical issues with this, as manipulating participants without their consent goes against the Belmont Report's guidelines for research on human participants (National Commission, 1979). Some argued that this sort of research is commonplace in industry (Park, 2014; Boesel, 2014) and that it only became unethical when it was published and fell short of the moral standards expected of academics (Park, 2014). Especially since it was done in collaboration with Cornell University: the Facebook researcher, Adam Kramer, partnered with two Cornell University investigators, Jamie Guillory and Jeffrey Hancock, in this project. The Cornell Institutional Review Board deemed the study exempt from their oversight because the data was being collected by Facebook, and some argue that it was a mistake (Boesel, 2014). This study violated the informed consent and ethical data collection principles of data science research.
 
 **Failure to Improve Lives**
 
@@ -47,4 +47,4 @@ Kramer, A. D., Guillory, J. E., and Hancock, J. T. (2014), [Experimental Evidenc
 
 Park, A. (2014, June 30). *Calm Down: Facebook Isn’t Really Manipulating Your Emotions*. TIME. <https://time.com/2941513/calm-down-facebook-isnt-manipulating-your-emotions/>
 
-Protections (OHRP), O. for H. R. (2010, January 28). *The Belmont Report* \[Page\]. <https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html>
+National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research. (1979). *The Belmont report: Ethical principles and guidelines for the protection of human subjects of research*. U.S. Department of Health and Human Services. <https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html>

@@ -1,5 +1,5 @@
 ---
-title: "Project 5"
+title: "SQL and large databases"
 description: |
   Analyses of Traffic Stops Across the USA
 author: Laura Furtado Fernandes
@@ -66,7 +66,7 @@ SELECT * FROM (
 ORDER BY num_stops DESC;
 ```
 
-The table above displays the number and type of police stops by race across three California cities, ordered in descending fashion by total number of stops. The plot below visualizes these results. Los Angeles recorded the highest number of stops overall, with Hispanic individuals being stopped most frequently in both vehicular and pedestrian contexts. San Diego is a distant second in terms of overall stops, with San Francisco coming last in this comparison. In San Diego and San Francisco, white drivers are stopped most often, however, these results must be taken in consideration of the racial make up of the three cities.
+The table above displays the number and type of police stops by race across three California cities, ordered in descending fashion by total number of stops. The plot below visualizes these results. Los Angeles recorded the highest number of stops overall (this is not surprising given that LA has more people than San Diego and San Francisco), with Hispanic individuals being stopped most frequently in both vehicular and pedestrian contexts. San Diego is a distant second in terms of overall stops, with San Francisco coming last in this comparison. In San Diego and San Francisco, white drivers are stopped most often, however, these results must be taken in consideration of the racial make up of the three cities.
 
 According to the U.S. Census Bureau, Los Angeles has a Hispanic majority, with approximately 47% of its population identifying as Hispanic. In contrast, San Diego’s population is majority White, with 50% identifying as White. Similarly, in San Francisco, White individuals also make up the largest racial group, comprising about 50% of the population.
 
@@ -120,7 +120,7 @@ ggplot(df, aes(x = subject_race, y = num_stops, fill = type)) +
 
 ```
 
-Comparing within California is good to get a sense of within state differences in traffic stop patterns, however, these comparisons are not without limitations. For instance, Los Angeles is much more car reliant than San Francisco and also much more populous. San Diego might be more car-centric than San Francisco but Los Angeles experiences much higher traffic and has more extensive freeways than San Diego. Therefore, I decided to compare Los Angeles, California, to another highly car-centered city: Houston, Texas.
+Comparing within California is good to get a sense of within state differences in traffic stop patterns, however, these comparisons are not without limitations. For instance, Los Angeles is much more car reliant than San Francisco and also much more populous. San Diego might be more car-centric than San Francisco but Los Angeles experiences much higher traffic and has more extensive freeways than San Diego. Therefore, I decided to compare Los Angeles, California, to another highly car-centered city: Houston, Texas. It is important to note, however, that Houston (2.31 million people) is less populous than Los Angeles (3.8 million people).
 
 ```{sql}
 #| connection: con_traffic
@@ -151,9 +151,14 @@ ORDER BY num_stops DESC;
 
 ```
 
-The table above displays the number and type of police stops by race in Los Angeles, CA, and Houston, TX, ordered in descending order by total stops. The plot below visualizes this data. Compared to other California cities, Houston and Los Angeles show more similar overall stop volumes. In Houston, White individuals are the most frequently stopped demographic, followed by Black individuals. In contrast, Los Angeles shows comparable numbers of vehicular stops for Black and White individuals, but White individuals are stopped less often in pedestrian encounters.
+The table above displays the number and type of police stops by race in Los Angeles, CA, and Houston, TX, ordered in descending order by total stops (the plot below visualizes this data). Houston is missing data on pedestrian stops and on stops of Hispanic individuals. I investigated the table and confirmed that there is not a column on ethnicity. This missing data limits comparisons.
 
-Houston is missing data on pedestrian stops and on stops of Hispanic individuals which makes again limits comparisons.
+```{sql}
+#| connection: con_traffic
+SHOW COLUMNS FROM tx_houston_2023_01_26;
+```
+
+Compared to other California cities, Houston and Los Angeles show more similar overall stop volumes. In Houston, White individuals are the most frequently stopped demographic, followed by Black individuals. In contrast, Los Angeles shows comparable numbers of vehicular stops for Black and White individuals, but White individuals are stopped less often in pedestrian encounters.
 
 ```{r}
 df <- dbGetQuery(con_traffic, "

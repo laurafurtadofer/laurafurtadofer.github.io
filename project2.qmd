@@ -1,5 +1,5 @@
 ---
-title: "Project 2"
+title: "Text Analyses + Regex"
 description: |
   Text Analysis of Friends Episodes
 author: Laura Furtado Fernandes
@@ -83,7 +83,7 @@ ggplot(smelly_cats_char, aes(x = total_utterances, y = total_smelly_cats)) +
 
 ```
 
-**This is a scatter plot displaying the total number of utterances per character (main 5 friends) in every episode of friends vs the total mentions of 'Smelly Cat'. Surprisingly, on episodes with more 'Smelly Cat' mentions, Phoebe does not speak more often than the other friends.**
+**This is a scatter plot displaying the total number of utterances per character (main 6 friends) in every episode of friends vs the total mentions of 'Smelly Cat'. Surprisingly, on episodes with more 'Smelly Cat' mentions, Phoebe does not speak more often than the other friends.**
 
 ```{r, utterance lengths}
 

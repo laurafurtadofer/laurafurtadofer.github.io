@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2025-04-29">
 <meta name="description" content="Analyses of Traffic Stops Across the USA">
 
-<title>Project 5 – Laura Furtado Fernandes</title>
+<title>SQL and large databases – Laura Furtado Fernandes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,17 +132,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-viz" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Data Viz</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Research</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-viz">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
         <li>
-    <a class="dropdown-item" href="./viz1.html">
- <span class="dropdown-text">Hollywood Age Gaps</span></a>
+    <a class="dropdown-item" href="./FurtadoFernandes_CV.pdf">
+ <span class="dropdown-text">CV</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./viz2.html">
- <span class="dropdown-text">Valentines Gift Habits</span></a>
+    <a class="dropdown-item" href="https://osf.io/profile/">
+ <span class="dropdown-text">OSF</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://scholar.google.com/citations?user=jfgtLh8AAAAJ">
+ <span class="dropdown-text">Google Scholar</span></a>
   </li>  
     </ul>
   </li>
@@ -153,19 +157,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-mini-projects">    
         <li>
     <a class="dropdown-item" href="./project2.html">
- <span class="dropdown-text">Project 2</span></a>
+ <span class="dropdown-text">Text Analyses + Regex</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./project3.html">
- <span class="dropdown-text">Project 3</span></a>
+ <span class="dropdown-text">Permutation Testing</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./project4.html">
- <span class="dropdown-text">Project 4</span></a>
+ <span class="dropdown-text">Data Science Ethics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./project5.html">
- <span class="dropdown-text">Project 5</span></a>
+ <span class="dropdown-text">SQL and large databases</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./viz1.html">
+ <span class="dropdown-text">Hollywood Age Gaps</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./viz2.html">
+ <span class="dropdown-text">Valentines Gift Habits</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./project6.html">
+ <span class="dropdown-text">Presentation</span></a>
   </li>  
     </ul>
   </li>
@@ -189,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project 5</h1>
+<h1 class="title">SQL and large databases</h1>
 </div>
 
 <div>
@@ -354,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<p>The table above displays the number and type of police stops by race across three California cities, ordered in descending fashion by total number of stops. The plot below visualizes these results. Los Angeles recorded the highest number of stops overall, with Hispanic individuals being stopped most frequently in both vehicular and pedestrian contexts. San Diego is a distant second in terms of overall stops, with San Francisco coming last in this comparison. In San Diego and San Francisco, white drivers are stopped most often, however, these results must be taken in consideration of the racial make up of the three cities.</p>
+<p>The table above displays the number and type of police stops by race across three California cities, ordered in descending fashion by total number of stops. The plot below visualizes these results. Los Angeles recorded the highest number of stops overall (this is not surprising given that LA has more people than San Diego and San Francisco), with Hispanic individuals being stopped most frequently in both vehicular and pedestrian contexts. San Diego is a distant second in terms of overall stops, with San Francisco coming last in this comparison. In San Diego and San Francisco, white drivers are stopped most often, however, these results must be taken in consideration of the racial make up of the three cities.</p>
 <p>According to the U.S. Census Bureau, Los Angeles has a Hispanic majority, with approximately 47% of its population identifying as Hispanic. In contrast, San Diego’s population is majority White, with 50% identifying as White. Similarly, in San Francisco, White individuals also make up the largest racial group, comprising about 50% of the population.</p>
 <p>San Francisco and San Diego lack data on pedestrian stops which limits this comparison.</p>
 <div class="cell">
@@ -410,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Comparing within California is good to get a sense of within state differences in traffic stop patterns, however, these comparisons are not without limitations. For instance, Los Angeles is much more car reliant than San Francisco and also much more populous. San Diego might be more car-centric than San Francisco but Los Angeles experiences much higher traffic and has more extensive freeways than San Diego. Therefore, I decided to compare Los Angeles, California, to another highly car-centered city: Houston, Texas.</p>
+<p>Comparing within California is good to get a sense of within state differences in traffic stop patterns, however, these comparisons are not without limitations. For instance, Los Angeles is much more car reliant than San Francisco and also much more populous. San Diego might be more car-centric than San Francisco but Los Angeles experiences much higher traffic and has more extensive freeways than San Diego. Therefore, I decided to compare Los Angeles, California, to another highly car-centered city: Houston, Texas. It is important to note, however, that Houston (2.31 million people) is less populous than Los Angeles (3.8 million people).</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
@@ -511,47 +527,150 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<p>The table above displays the number and type of police stops by race in Los Angeles, CA, and Houston, TX, ordered in descending order by total stops. The plot below visualizes this data. Compared to other California cities, Houston and Los Angeles show more similar overall stop volumes. In Houston, White individuals are the most frequently stopped demographic, followed by Black individuals. In contrast, Los Angeles shows comparable numbers of vehicular stops for Black and White individuals, but White individuals are stopped less often in pedestrian encounters.</p>
-<p>Houston is missing data on pedestrian stops and on stops of Hispanic individuals which makes again limits comparisons.</p>
+<p>The table above displays the number and type of police stops by race in Los Angeles, CA, and Houston, TX, ordered in descending order by total stops (the plot below visualizes this data). Houston is missing data on pedestrian stops and on stops of Hispanic individuals. I investigated the table and confirmed that there is not a column on ethnicity. This missing data limits comparisons.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con_traffic, <span class="st">"</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT subject_race, type,   </span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SUM(1) AS num_stops,</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">    'los angeles' AS city</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ca_los_angeles_2020_04_01</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE type IS NOT NULL</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">    AND date BETWEEN '2015-01-01' AND '2015-12-31'</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">  GROUP BY  subject_race, type</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">  UNION ALL</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT subject_race, type,   </span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">    SUM(1) AS num_stops,</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">   'houston' AS city</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM tx_houston_2023_01_26</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE type IS NOT NULL</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">    AND date BETWEEN '2015-01-01' AND '2015-12-31'</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">  GROUP BY  subject_race, type</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> subject_race, <span class="at">y =</span> num_stops, <span class="at">fill =</span> type)) <span class="sc">+</span> </span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Number of Stops by Race and Stop Type in Los Angeles and Houston in 2015"</span>,</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Subject Race"</span>,</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Stops"</span>,</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Stop Type"</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( . <span class="sc">~</span> city) <span class="sc">+</span> </span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">COLUMNS</span> <span class="kw">FROM</span> tx_houston_2023_01_26;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Null</th>
+<th style="text-align: left;">Key</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">raw_row_number</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">date</td>
+<td style="text-align: left;">date</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">time</td>
+<td style="text-align: left;">time</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">location</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lat</td>
+<td style="text-align: left;">double</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lng</td>
+<td style="text-align: left;">double</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geocode_source</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">beat</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">district</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">subject_race</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Compared to other California cities, Houston and Los Angeles show more similar overall stop volumes. In Houston, White individuals are the most frequently stopped demographic, followed by Black individuals. In contrast, Los Angeles shows comparable numbers of vehicular stops for Black and White individuals, but White individuals are stopped less often in pedestrian encounters.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con_traffic, <span class="st">"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT subject_race, type,   </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SUM(1) AS num_stops,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">    'los angeles' AS city</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ca_los_angeles_2020_04_01</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE type IS NOT NULL</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">    AND date BETWEEN '2015-01-01' AND '2015-12-31'</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="st">  GROUP BY  subject_race, type</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="st">  UNION ALL</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT subject_race, type,   </span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="st">    SUM(1) AS num_stops,</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="st">   'houston' AS city</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM tx_houston_2023_01_26</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE type IS NOT NULL</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="st">    AND date BETWEEN '2015-01-01' AND '2015-12-31'</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="st">  GROUP BY  subject_race, type</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> subject_race, <span class="at">y =</span> num_stops, <span class="at">fill =</span> type)) <span class="sc">+</span> </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Number of Stops by Race and Stop Type in Los Angeles and Houston in 2015"</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Subject Race"</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Stops"</span>,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Stop Type"</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( . <span class="sc">~</span> city) <span class="sc">+</span> </span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project5_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project5_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

@@ -8,22 +8,30 @@ website:
     left:
       - href: index.qmd
         text: "Home"
-      - text: "Data Viz"
+      - text: "Research"
         menu: 
+          - text: "CV"
+            href: FurtadoFernandes_CV.pdf  
+          - text: "OSF"
+            href: https://osf.io/profile/  
+          - text: "Google Scholar"
+            href: https://scholar.google.com/citations?user=jfgtLh8AAAAJ 
+      - text: "Mini Projects"
+        menu:     
+          - text: "Text Analyses + Regex"
+            href: project2.html
+          - text: "Permutation Testing"
+            href: project3.html
+          - text: "Data Science Ethics"
+            href: project4.html
+          - text: "SQL and large databases"
+            href: project5.html
           - text: "Hollywood Age Gaps"
             href: viz1.html  
           - text: "Valentines Gift Habits"
             href: viz2.html 
-      - text: "Mini Projects"
-        menu:     
-          - text: "Project 2"
-            href: project2.html
-          - text: "Project 3"
-            href: project3.html
-          - text: "Project 4"
-            href: project4.html
-          - text: "Project 5"
-            href: project5.html
+          - text: "Presentation"
+            href: project6.html
             
           
 format:
